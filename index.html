@@ -12,9 +12,6 @@
   <link rel="shortcut icon" href="https://www.baemin.com/_next/static/media/favicon.41582b85.ico" />
 
   <style>
-    /* =========================
-      0) Base Reset
-    ========================= */
     * {
       box-sizing: border-box;
     }
@@ -45,7 +42,6 @@
       height: auto;
     }
 
-    /* 접근성: 화면에서 숨기되 읽히게 */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -57,18 +53,11 @@
       border: 0;
     }
 
-    /* =========================
-      1) Variables
-    ========================= */
     :root {
       --header-h: 96px;
     }
 
-    /* >=1024 */
 
-    /* =========================
-      2) Fixed Header (배민 수치 기반)
-    ========================= */
     .site-header {
       position: fixed;
       top: 0;
@@ -117,7 +106,6 @@
       height: 32px;
     }
 
-    /* 배민: <=599 */
     @media (max-width: 599px) {
       :root {
         --header-h: 80px;
@@ -134,7 +122,6 @@
       }
     }
 
-    /* 배민: 600~1023 */
     @media (min-width: 600px) and (max-width: 1023px) {
       :root {
         --header-h: 88px;
@@ -147,10 +134,6 @@
       }
     }
 
-    /* =========================
-      3) Snap Scroll Container
-      - 스크롤은 .snap에서만
-    ========================= */
     .page {
       height: 100vh;
       padding-top: 0;
@@ -162,14 +145,11 @@
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
       -ms-overflow-style: none;
-      /* IE, Edge */
       scrollbar-width: none;
-      /* Firefox */
     }
 
     .snap::-webkit-scrollbar {
       display: none;
-      /* Chrome, Safari */
     }
 
     .snap__section {
@@ -178,7 +158,6 @@
       position: relative;
     }
 
-    /* Scroll Icon Container */
     .scroll-container {
       position: absolute;
       box-sizing: border-box;
@@ -228,9 +207,6 @@
       }
     }
 
-    /* =========================
-      4) Intro (배민 구조로 정렬)
-    ========================= */
     .intro {
       position: relative;
       width: 100%;
@@ -386,9 +362,6 @@
       border: 1px solid rgba(255, 255, 255, 0.35);
     }
 
-    /* =========================
-      5) 일반 섹션 템플릿(2열)
-    ========================= */
     .section__inner {
       min-height: 100vh;
       max-width: 1200px;
@@ -410,7 +383,6 @@
       }
     }
 
-    /* 인트로 하단 다운로드 CTA */
     .intro__download {
       display: flex;
       flex-direction: row;
@@ -471,9 +443,6 @@
       height: 28px;
     }
 
-    /* =========================
-      Pagination (Baemin-like)
-    ========================= */
     .pagination {
       box-sizing: border-box;
       position: fixed;
@@ -530,7 +499,66 @@
       }
     }
 
-    /* ===== MENU BUTTON (SVG) ===== */
+    .pagination__detail {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      padding: 20px 40px;
+      flex-direction: column;
+      align-items: flex-start;
+
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      backdrop-filter: blur(4px);
+
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .pagination__list:hover~.pagination__detail,
+    .pagination__detail:hover {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .pagination__detail-item {
+      min-width: 80px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0;
+      border: 0;
+      background: transparent;
+
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 1em;
+      text-align: center;
+      color: #718082;
+      cursor: pointer;
+    }
+
+    .pagination__detail-item:hover,
+    .pagination__detail-item:focus-visible {
+      color: #fff;
+      outline: none;
+    }
+
+
+
+    .pagination__detail-item.is-active {
+      color: #0CEFD3;
+    }
+
+
     .menu-btn {
       width: 48px;
       height: 48px;
@@ -540,7 +568,6 @@
       cursor: pointer;
 
       display: none;
-      /* PC 기본 숨김 */
       align-items: center;
       justify-content: center;
 
@@ -566,7 +593,6 @@
       }
     }
 
-    /* 모바일: 통합 다운로드 버튼 */
     .intro__download-mobile {
       display: none;
     }
@@ -608,15 +634,12 @@
       height: 20px;
     }
 
-    /* ===== S2: SectionItemTemplate clone ===== */
     .section-item {
       box-sizing: border-box;
       width: 100%;
       min-height: 100vh;
-      /* snap 섹션 높이 기준 */
       background-color: #0CEFD3;
       overflow: hidden;
-      /* ✅ GIF 튀어나감 방지(원본도 overflow hidden) */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -624,7 +647,6 @@
       position: relative;
     }
 
-    /* 모바일에서 위로 붙고 padding-top 80 */
     @media screen and (max-width: 599px) {
       .section-item {
         justify-content: flex-start;
@@ -633,7 +655,6 @@
       }
     }
 
-    /* ContentContainer: intro__content랑 동일 패턴 */
     .section-item__content {
       width: 100%;
       position: relative;
@@ -641,7 +662,6 @@
       display: flex;
       flex-direction: column;
       z-index: 3;
-      /* GIF 위로 */
     }
 
     @media screen and (max-width: 599px) {
@@ -666,7 +686,6 @@
       }
     }
 
-    /* AbsoluteContainer: 가운데 기준(최대 1440)으로 잡고, 그 안에서 GIF를 right/bottom으로 */
     .section-item__abs {
       position: absolute;
       top: 0;
@@ -679,7 +698,6 @@
       z-index: 0;
     }
 
-    /* GifContainer: 오른쪽 아래, height 100% / 모바일은 66% */
     .section-item__gif {
       position: absolute;
       right: 0;
@@ -696,14 +714,12 @@
       }
     }
 
-    /* GifImage: height 100%, width auto (원본 핵심) */
     .section-item__gif-img {
       height: 100%;
       width: auto;
       display: block;
     }
 
-    /* Subtitle(p) 타이포: 원본처럼 BAEMINWORK + letter-spacing -0.04em */
     .section-item__subtitle p {
       margin: 0;
       color: #000;
@@ -733,7 +749,6 @@
       }
     }
 
-    /* Description(p) 타이포: 원본처럼 16/18/20 */
     .section-item__desc p {
       margin: 0;
       color: #000;
@@ -1028,44 +1043,32 @@
       }
     }
 
-    /* =========================
-   Footer (Baemin-like)
-========================= */
-
-    /* footer 섹션 자체 배경 */
     .snap__section.footer.is-footer {
       background: #000;
-      /* 원본: footer 배경 검정 */
       color: #fff;
       overflow: hidden;
     }
 
-    /* footer__inner는 이제 "배경/전체 패딩" 역할로 사용 */
     .footer__inner {
       width: 100%;
       margin: 0;
       padding: 0;
-      /* 컨테이너가 패딩 담당 */
 
     }
 
-    /* 원본: 가운데 폭 제한 컨테이너 + 큰 패딩 */
     .footer-container {
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 40px;
-      /* 원본 느낌의 큰 gap */
       position: relative;
       -webkit-box-pack: center;
-      /* 데스크탑 기본 패딩 */
       max-width: 1240px;
       box-sizing: border-box;
       height: 100vh;
     }
 
-    /* 모바일(<=599)에서 원본처럼 패딩 축소 + 위쪽 여백(헤더 높이 보정) */
     @media (max-width: 599px) {
       .footer-container {
         display: flex;
@@ -1076,7 +1079,6 @@
       }
     }
 
-    /* 600~1023: 좌우 패딩 살짝 줄이는 느낌 */
     @media (min-width: 600px) and (max-width: 1023px) {
       .footer-container {
         max-width: 1200px;
@@ -1091,9 +1093,6 @@
       }
     }
 
-    /* =========================
-   (A) footer-section: family + righttext
-========================= */
     .footer-section {
       display: flex;
       align-items: flex-start;
@@ -1101,7 +1100,6 @@
 
     }
 
-    /* 모바일: 원본처럼 column-reverse(슬로건이 위/아래 순서 바뀌는 느낌) */
     @media (max-width: 599px) {
       .footer-section {
         flex-direction: column-reverse;
@@ -1109,14 +1107,12 @@
       }
     }
 
-    /* family 링크 묶음(네가 div로 둔 상태라서, 내부에 a를 넣으면 자동 적용됨) */
     .footer-family {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    /* family 안에 링크가 들어갈 걸 가정 */
     .footer-family a {
       color: #FFFFFF;
       text-decoration: none;
@@ -1149,16 +1145,13 @@
       text-decoration: underline;
     }
 
-    /* 오른쪽 슬로건 텍스트 */
     .footer-righttext {
       margin: 0;
       white-space: pre-line;
-      /* <br> 넣으면 그대로 줄바꿈 */
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 140%;
       text-align: left;
-      /* 원본 느낌: 큰 타이포 */
       font-style: normal;
       font-family: BAEMINWORK;
       display: block;
@@ -1184,9 +1177,6 @@
       }
     }
 
-    /* =========================
-   (B) SNS Row
-========================= */
     .footer-sns {
       display: flex;
       flex-direction: row;
@@ -1240,12 +1230,8 @@
 
     .footer-sns svg {
       fill: currentColor;
-      /* svg path가 currentColor면 자동 흰색 */
     }
 
-    /* =========================
-   (C) Company Info
-========================= */
     .company-container {
       display: flex;
       flex-direction: column;
@@ -1253,14 +1239,12 @@
       color: #B1B3B5;
     }
 
-    /* 회사명 타이틀 */
     .footer-company {
       font-weight: 700;
       font-size: 16px;
       line-height: 140%;
     }
 
-    /* 아래 정보: 2열 레이아웃(데스크탑), 모바일은 1열 */
     .footer-colcontainer {
       display: flex;
       flex-direction: column;
@@ -1298,7 +1282,6 @@
       }
     }
 
-    /* row 내부 텍스트 톤 */
     .company-row1,
     .company-row2 {
       display: flex;
@@ -1337,22 +1320,18 @@
     }
 
 
-    /* (row1) 회사정보 줄들 */
     .company-info {
       display: flex;
       flex-wrap: wrap;
       gap: 8px 14px;
-      /* 줄바꿈 되는 경우 대비 */
     }
 
-    /* (row2) inner group(한 줄에 여러 span) */
     .company-innergroup {
       display: flex;
       flex-wrap: wrap;
       gap: 8px 14px;
     }
 
-    /* 링크 스타일(메일/약관 등) */
     .company-container a {
       color: #B1B3B5;
       font-size: inherit;
@@ -1440,6 +1419,19 @@
           <li class="pagination__item"><button class="pagination__bar" type="button" data-target="s9"
               aria-label="섹션 9"></button></li>
         </ul>
+
+        <div class="pagination__detail" aria-label="섹션 목록">
+          <button class="pagination__detail-item" type="button" data-target="s1">앱 다운로드</button>
+          <button class="pagination__detail-item" type="button" data-target="s2">배달의민족</button>
+          <button class="pagination__detail-item" type="button" data-target="s3">음식배달</button>
+          <button class="pagination__detail-item" type="button" data-target="s4">배민클럽</button>
+          <button class="pagination__detail-item" type="button" data-target="s5">B마트</button>
+          <button class="pagination__detail-item" type="button" data-target="s6">장보기 · 쇼핑</button>
+          <button class="pagination__detail-item" type="button" data-target="s7">선물하기</button>
+          <button class="pagination__detail-item" type="button" data-target="s8">전국특가</button>
+          <button class="pagination__detail-item" type="button" data-target="s9">배민페이</button>
+        </div>
+
       </nav>
 
       <section id="s1" class="snap__section intro" aria-label="인트로">
@@ -1538,29 +1530,23 @@
             </svg>
           </div>
         </div>
-        <!-- ✅ 원본 SectionItemTemplate 컨테이너 -->
         <div class="section-item">
-          <!-- ✅ GIF는 'absolute container' 안에서 오른쪽/아래로 붙음 -->
           <div class="section-item__abs" aria-hidden="true">
             <div class="section-item__gif">
               <img class="section-item__gif-img" src="./img/baemin.1adead95.gif" alt="" />
             </div>
           </div>
 
-          <!-- ✅ 컨텐츠는 가운데 정렬 + max-width/padding/gap이 intro__content랑 같은 패턴 -->
           <div class="section-item__content">
-            <!-- eyebrow(이미지) -->
             <div class="section-item__title">
               <img src="./img/baemin_logo.684531d5.png" alt="배달의민족" />
             </div>
 
-            <!-- subtitle(두 p를 한 div) -->
             <div class="section-item__subtitle">
               <p>세상 모든 것이</p>
               <p>식지 않도록</p>
             </div>
 
-            <!-- desc(한 p를 다른 div) -->
             <div class="section-item__desc">
               <p>오늘도 가장 앞서 뜨겁게 달립니다.</p>
             </div>
@@ -1579,27 +1565,26 @@
           </div>
         </div>
         <div class="section-item">
-          <!-- ✅ GIF는 'absolute container' 안에서 오른쪽/아래로 붙음 -->
+
           <div class="section-item__abs" aria-hidden="true">
             <div class="section-item__gif">
               <img class="section-item__gif-img" src="./img/food.02e6070e.gif" alt="" />
             </div>
           </div>
 
-          <!-- ✅ 컨텐츠는 가운데 정렬 + max-width/padding/gap이 intro__content랑 같은 패턴 -->
+
           <div class="section-item__content">
-            <!-- eyebrow(이미지) -->
+
             <div class="section-item__title1">
               <img src="./img/food.f99a939d.png" alt="섹션 3" />
             </div>
 
-            <!-- subtitle(두 p를 한 div) -->
             <div class="section-item__subtitle">
               <p>입점 가게 수 1위,</p>
               <p>음식 리뷰 수 1위</p>
             </div>
 
-            <!-- desc(한 p를 다른 div) -->
+
             <div class="section-item__desc">
               <p>내가 찾던 맛집 배민엔 다 있어요!</p>
               <p>한집배달로 더 빠르게,</p>
@@ -1620,27 +1605,24 @@
           </div>
         </div>
         <div class="section-item">
-          <!-- ✅ GIF는 'absolute container' 안에서 오른쪽/아래로 붙음 -->
+
           <div class="section-item__abs" aria-hidden="true">
             <div class="section-item__gif">
               <img class="section-item__gif-img" src="./img/club.2196419a.gif" alt="" />
             </div>
           </div>
 
-          <!-- ✅ 컨텐츠는 가운데 정렬 + max-width/padding/gap이 intro__content랑 같은 패턴 -->
+
           <div class="section-item__content1">
-            <!-- eyebrow(이미지) -->
             <div class="section-item__title1">
               <img src="./img/club.05c12703.png" alt="섹션 4" />
             </div>
 
-            <!-- subtitle(두 p를 한 div) -->
             <div class="section-item__subtitle">
               <p>시켜도 시켜도</p>
               <p>배달팁 무료</p>
             </div>
 
-            <!-- desc(한 p를 다른 div) -->
             <div class="section-item__desc">
               <p>지금 배민클럽 가입하고</p>
               <p>앞으로도 쭉- 배달비 없이 주문하세요.</p>
@@ -1662,27 +1644,22 @@
           </div>
         </div>
         <div class="section-item">
-          <!-- ✅ GIF는 'absolute container' 안에서 오른쪽/아래로 붙음 -->
           <div class="section-item__abs" aria-hidden="true">
             <div class="section-item__gif">
               <img class="section-item__gif-img" src="./img/bmart.682591dd.gif" alt="" />
             </div>
           </div>
 
-          <!-- ✅ 컨텐츠는 가운데 정렬 + max-width/padding/gap이 intro__content랑 같은 패턴 -->
           <div class="section-item__content1">
-            <!-- eyebrow(이미지) -->
             <div class="section-item__title1">
               <img src="./img/bmart.7f10e0e2.png" alt="섹션 5" />
             </div>
 
-            <!-- subtitle(두 p를 한 div) -->
             <div class="section-item__subtitle">
               <p>365일 연중무휴</p>
               <p>초신속 배달</p>
             </div>
 
-            <!-- desc(한 p를 다른 div) -->
             <div class="section-item__desc">
               <p>제철 과일부터 트렌디한 간식,</p>
               <p>배민이 공들여 만든 단독 상품까지!</p>
@@ -1705,26 +1682,21 @@
           </div>
         </div>
         <div class="section-item">
-          <!-- ✅ GIF는 'absolute container' 안에서 오른쪽/아래로 붙음 -->
           <div class="section-item__abs" aria-hidden="true">
             <div class="section-item__gif">
               <img class="section-item__gif-img" src="./img/shopping.22a0489d.gif" alt="" />
             </div>
           </div>
 
-          <!-- ✅ 컨텐츠는 가운데 정렬 + max-width/padding/gap이 intro__content랑 같은 패턴 -->
           <div class="section-item__content1">
-            <!-- eyebrow(이미지) -->
             <div class="section-item__title6">
               <img src="./img/shopping.9ce80bd6.png" alt="섹션 6" />
             </div>
 
-            <!-- subtitle(두 p를 한 div) -->
             <div class="section-item__subtitle">
               <p>배달은 지금 옵니다</p>
             </div>
 
-            <!-- desc(한 p를 다른 div) -->
             <div class="section-item__desc">
               <p>식료품은 기본! 핸드폰, 책, 꽃다발까지</p>
               <p>일상에 필요한 모든 게 지금 배달돼요.</p>
@@ -1749,26 +1721,21 @@
           </div>
         </div>
         <div class="section-item">
-          <!-- ✅ GIF는 'absolute container' 안에서 오른쪽/아래로 붙음 -->
           <div class="section-item__abs" aria-hidden="true">
             <div class="section-item__gif">
               <img class="section-item__gif-img" src="./img/gift.418c68c2.gif" alt="" />
             </div>
           </div>
 
-          <!-- ✅ 컨텐츠는 가운데 정렬 + max-width/padding/gap이 intro__content랑 같은 패턴 -->
           <div class="section-item__content7">
-            <!-- eyebrow(이미지) -->
             <div class="section-item__title7">
               <img src="./img/gift.4a13ba14.png" alt="섹션 7" />
             </div>
 
-            <!-- subtitle(두 p를 한 div) -->
             <div class="section-item__subtitle">
               <p>마음을 배달해드려요</p>
             </div>
 
-            <!-- desc(한 p를 다른 div) -->
             <div class="section-item__desc">
               <p>마음을 전하는 가장 맛있는 방법.</p>
               <p>든든한 한 끼부터 배민 상품권까지,</p>
@@ -1791,25 +1758,21 @@
           </div>
         </div>
         <div class="section-item">
-          <!-- ✅ GIF는 'absolute container' 안에서 오른쪽/아래로 붙음 -->
           <div class="section-item__abs" aria-hidden="true">
             <div class="section-item__gif">
               <img class="section-item__gif-img" src="./img/hyper.f8fa7367.gif" alt="" />
             </div>
           </div>
 
-          <!-- ✅ 컨텐츠는 가운데 정렬 + max-width/padding/gap이 intro__content랑 같은 패턴 -->
           <div class="section-item__content1">
             <div class="section-item__title1">
               <img src="./img/hyper.e58f9b5d.png" alt="섹션 8" />
             </div>
 
-            <!-- subtitle(두 p를 한 div) -->
             <div class="section-item__subtitle">
               <p>대용량 택배배송</p>
             </div>
 
-            <!-- desc(한 p를 다른 div) -->
             <div class="section-item__desc">
               <p class="desc"><span>생수부터 라면, 샴푸, 휴지까지,</span>
                 <span>미리 사두면 든든하니까.</span>
@@ -1832,26 +1795,21 @@
           </div>
         </div>
         <div class="section-item">
-          <!-- ✅ GIF는 'absolute container' 안에서 오른쪽/아래로 붙음 -->
           <div class="section-item__abs" aria-hidden="true">
             <div class="section-item__gif">
               <img class="section-item__gif-img" src="./img/pay.9d9cf377.gif" alt="" />
             </div>
           </div>
 
-          <!-- ✅ 컨텐츠는 가운데 정렬 + max-width/padding/gap이 intro__content랑 같은 패턴 -->
           <div class="section-item__content1">
-            <!-- eyebrow(이미지) -->
             <div class="section-item__title1">
               <img src="./img/pay.455ace16.png" alt="섹션 9" />
             </div>
 
-            <!-- subtitle(두 p를 한 div) -->
             <div class="section-item__subtitle">
               <p>10초 만에 결제 완료</p>
             </div>
 
-            <!-- desc(한 p를 다른 div) -->
             <div class="section-item__desc">
               <p>배민페이에 내 계좌, 카드 등록하고 편하게 결제하세요.</p>
               <p>배민페이머니로 결제할 때마다</p>
@@ -1940,103 +1898,114 @@
   </div>
 
   <script>
-    const scroller = document.querySelector('.snap');
+    const scroller = document.querySelector('.snap')
+    const pagination = document.querySelector('.pagination')
 
-    // ✅ pagination에 포함되는 섹션만 (footer 제외) — 그대로 유지
-    const sections = Array.from(document.querySelectorAll('.snap__section[id]'))
-      .filter(sec => sec.id !== 'footer');
+    const sections = Array.from(document.querySelectorAll('.snap__section[id]')).filter(sec => sec.id !== 'footer')
+    const allSections = Array.from(document.querySelectorAll('.snap__section[id]'))
+    const footer = document.getElementById('footer')
 
-    // ✅ observer는 footer 포함 전체 섹션을 봐야 footer 진입 감지가 됨
-    const allSections = Array.from(document.querySelectorAll('.snap__section[id]'));
+    const items = Array.from(document.querySelectorAll('.pagination__item'))
+    const detailItems = Array.from(document.querySelectorAll('.pagination__detail-item'))
+    const btns = Array.from(document.querySelectorAll('.pagination [data-target]'))
 
-    const footer = document.getElementById('footer');
-
-    const items = Array.from(document.querySelectorAll('.pagination__item'));
-    const btns = Array.from(document.querySelectorAll('.pagination__bar'));
-
-    let isOnFooter = false;
+    let isOnFooter = false
 
     function clearActive() {
-      items.forEach(li => li.classList.remove('is-active'));
+      items.forEach(li => li.classList.remove('is-active'))
+      detailItems.forEach(btn => btn.classList.remove('is-active'))
     }
 
     function setActiveById(id) {
-      // footer 구간이면 pagination은 건드리지 않게 막음(기존 의도 유지)
-      if (isOnFooter) return;
+      if (isOnFooter) return
+      clearActive()
+      const idx = sections.findIndex(s => s.id === id)
 
-      clearActive();
-      const idx = sections.findIndex(s => s.id === id);
-      if (idx >= 0) items[idx].classList.add('is-active');
+      if (idx >= 0) {
+        if (items[idx]) items[idx].classList.add('is-active')
+        if (detailItems[idx]) detailItems[idx].classList.add('is-active')
+      }
 
-      const header = document.querySelector('.site-header');
-      header.classList.toggle('is-light', id === 's1' || id === 'footer');
+      const header = document.querySelector('.site-header')
+      header.classList.toggle('is-light', id === 's1' || id === 'footer')
     }
 
-    // 초기: 첫 섹션 활성
-    if (sections[0]) items[0].classList.add('is-active');
+    if (sections[0]) {
+      if (items[0]) items[0].classList.add('is-active')
+      if (detailItems[0]) detailItems[0].classList.add('is-active')
+    }
 
-    // 클릭 시 이동
-    btns.forEach((btn) => {
+    btns.forEach(btn => {
       btn.addEventListener('click', () => {
-        const id = btn.dataset.target;
-        const target = document.getElementById(id);
-        if (!target) return;
+        const id = btn.dataset.target
+        const target = document.getElementById(id)
+        if (!target) return
 
-        // ✅ pagination에는 footer 버튼이 없겠지만, 안전하게 유지
-        isOnFooter = (id === 'footer');
-        if (isOnFooter) clearActive();
+        pagination.classList.remove('is-open')
 
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (!isOnFooter) setActiveById(id);
-      });
-    });
+        isOnFooter = (id === 'footer')
+        if (isOnFooter) clearActive()
 
-    // 스크롤 시 섹션 감지 (✅ footer 포함해서 감지해야 헤더 토글이 자연스러움)
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        if (!isOnFooter) setActiveById(id)
+      })
+    })
+
+    pagination.addEventListener('mouseenter', () => {
+      pagination.classList.add('is-open')
+    })
+
+    pagination.addEventListener('mouseleave', () => {
+      pagination.classList.remove('is-open')
+    })
+
+    document.addEventListener('click', (e) => {
+      if (!pagination.contains(e.target)) {
+        pagination.classList.remove('is-open')
+      }
+    })
+
     const io = new IntersectionObserver((entries) => {
-      // footer면 pagination 업데이트는 막지만, 헤더 토글은 footerObserver가 담당
-      if (isOnFooter) return;
+      if (isOnFooter) return
 
       const best = entries
         .filter(e => e.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
 
-      if (best) setActiveById(best.target.id);
-    }, { root: scroller, threshold: [0.35, 0.55, 0.75] });
+      if (best) setActiveById(best.target.id)
+    }, { root: scroller, threshold: [0.35, 0.55, 0.75] })
 
-    // ✅ footer 포함 전체 섹션 observe
-    allSections.forEach(sec => io.observe(sec));
+    allSections.forEach(sec => io.observe(sec))
 
-    // ✅ footer 감지
     if (footer) {
       const footerObserver = new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        if (!entry) return;
+        const entry = entries[0]
+        if (!entry) return
 
-        const header = document.querySelector('.site-header'); // ✅ 여기서 선언!
+        const header = document.querySelector('.site-header')
 
         if (entry.isIntersecting) {
-          isOnFooter = true;
-          clearActive();
-          header.classList.add('is-light');  // ✅ footer에서 흰색 강제
+          isOnFooter = true
+          clearActive()
+          header.classList.add('is-light')
+          pagination.style.opacity = "0"
+          pagination.style.pointerEvents = "none"
         } else {
-          isOnFooter = false;
+          isOnFooter = false
+          pagination.style.opacity = "1"
+          pagination.style.pointerEvents = "auto"
 
-          // footer에서 빠져나오면 "현재 섹션" 기준으로 복구
           const best = sections
             .map(sec => ({ sec, rect: sec.getBoundingClientRect() }))
-            .sort((a, b) => Math.abs(a.rect.top) - Math.abs(b.rect.top))[0];
+            .sort((a, b) => Math.abs(a.rect.top) - Math.abs(b.rect.top))[0]
 
-          if (best) setActiveById(best.sec.id);
+          if (best) setActiveById(best.sec.id)
         }
-      }, { root: scroller, threshold: 0.5 });
+      }, { root: scroller, threshold: 0.5 })
 
-      footerObserver.observe(footer);
+      footerObserver.observe(footer)
     }
   </script>
 </body>
 
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 91673d7 (site ready)
